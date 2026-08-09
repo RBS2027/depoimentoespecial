@@ -74,3 +74,34 @@ footer.site .cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(14re
 footer.site a{color:var(--offwhite)}
 footer.site a:hover{color:var(--dourado)}
 footer .legal{margin-top:2rem;font-size:.78rem;color:rgba(245,244,239,.6)}
+
+/* Fotos */
+.photo{display:block;width:100%;max-width:44rem;border-radius:4px;margin:1.25rem 0 1.75rem;border:1px solid rgba(201,162,39,.35)}
+.photo.retrato{max-width:22rem}
+
+/* Tabelas roláveis em telas estreitas */
+article.prose table{display:block;overflow-x:auto;max-width:100%}
+
+/* Celular */
+@media (max-width:640px){
+  body{font-size:1rem}
+  header.site .wrap{flex-direction:column;align-items:flex-start;gap:.6rem}
+  nav.main{gap:.55rem .95rem}
+  nav.main a{font-size:.74rem;padding:.35rem 0;display:inline-block}
+  .hero{padding:2.75rem 0 2.5rem}
+  .hero p.lead{font-size:1.05rem}
+  .hero .btns{flex-direction:column;align-items:stretch}
+  .btn{text-align:center;padding:1rem 1.4rem}
+  section{padding:2.25rem 0}
+  article.prose{padding:2.25rem 0 .75rem}
+  .cta-band{padding:2.5rem 1rem}
+  .photo.retrato{max-width:100%}
+  th,td{padding:.5rem .6rem;font-size:.88rem}
+}
+
+/* Blog */
+.byline{color:rgba(245,244,239,.65);font-size:.85rem;font-family:'Montserrat',Arial,sans-serif;margin-top:-.5rem}
+.post-item{border:1px solid rgba(201,162,39,.35);border-radius:4px;padding:1.25rem 1.5rem;margin:0 0 1rem;background:rgba(14,36,48,.35)}
+.post-item h3{margin:.1rem 0 .4rem}
+.post-item a{text-decoration:none}
+.post-item .data{color:rgba(245,244,239,.6);font-size:.78rem;font-family:'Montserrat',Arial,sans-serif;text-transform:uppercase;letter-spacing:.08em}
