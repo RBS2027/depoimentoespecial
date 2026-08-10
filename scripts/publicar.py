@@ -4,7 +4,7 @@ import os, json, shutil, glob
 from datetime import datetime, timezone, timedelta
 
 DOM = "https://depoimentoespecial.com.br"
-BASE = ["/", "/o-que-e-depoimento-especial/", "/assistente-tecnico/",
+BASE = ["/", "/o-que-e-depoimento-especial/", "/assistente-tecnico/", "/escuta-especializada/",
         "/analise-de-entrevista-forense/", "/blog/", "/quem-sou/", "/contato/"]
 MESES = ["janeiro","fevereiro","março","abril","maio","junho","julho",
          "agosto","setembro","outubro","novembro","dezembro"]
@@ -18,9 +18,19 @@ agora = datetime.now(timezone(timedelta(hours=-3)))  # América/São_Paulo
 data_ext = f"{agora.day} de {MESES[agora.month-1]} de {agora.year}"
 data_iso = agora.strftime("%Y-%m-%d")
 
-src = fila[0]
-meta = json.load(open(src+"meta.json", encoding="utf-8"))
-slug = meta["slug"]
+posts_prev = json.load(open("blog/posts.json", encoding="utf-8"))
+ja = {p["slug"] for p in posts_prev}
+src = None
+for cand in fila:
+    m = json.load(open(cand+"meta.json", encoding="utf-8"))
+    if m["slug"] in ja:
+        shutil.rmtree(cand)  # já publicado: limpa e segue
+        continue
+    src, meta, slug = cand, m, m["slug"]
+    break
+if src is None:
+    print("Fila sem itens inéditos — nada a publicar.")
+    raise SystemExit(0)
 
 html = open(src+"index.html", encoding="utf-8").read()
 html = html.replace("{{DATA}}", data_ext).replace("{{DATA_ISO}}", data_iso)
