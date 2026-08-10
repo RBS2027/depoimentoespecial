@@ -86,7 +86,9 @@ article.prose table{display:block;overflow-x:auto;max-width:100%}
 @media (max-width:640px){
   body{font-size:1rem}
   header.site .wrap{flex-direction:column;align-items:flex-start;gap:.6rem}
-  nav.main{gap:.55rem .95rem}
+  nav.main{gap:.55rem .95rem;flex-wrap:nowrap;overflow-x:auto;max-width:100%;padding-bottom:.2rem;-webkit-mask-image:linear-gradient(90deg,#000 86%,transparent);mask-image:linear-gradient(90deg,#000 86%,transparent);scrollbar-width:none}
+  nav.main::-webkit-scrollbar{display:none}
+  nav.main a{white-space:nowrap}
   nav.main a{font-size:.74rem;padding:.35rem 0;display:inline-block}
   .hero{padding:2.75rem 0 2.5rem}
   .hero p.lead{font-size:1.05rem}
