@@ -115,7 +115,7 @@ nav.main a{position:relative;padding-bottom:.35rem}
 nav.main a::after{content:"";position:absolute;left:0;bottom:0;width:0;height:1.5px;background:var(--dourado);transition:width .25s ease}
 nav.main a:hover::after,nav.main a[aria-current="page"]::after{width:100%}
 
-.hero{background:linear-gradient(105deg, rgba(14,39,33,.96) 34%, rgba(14,39,33,.72) 70%, rgba(14,36,48,.55)), url('/assets/img/escritorio.webp') right center/cover no-repeat;border-bottom:1px solid rgba(201,162,39,.35);padding:5.5rem 0 4.5rem}
+.hero{background:linear-gradient(105deg, rgba(14,39,33,.96) 34%, rgba(14,39,33,.72) 70%, rgba(14,36,48,.55)), url('/assets/img/escritorio.webp') right top/cover no-repeat;border-bottom:1px solid rgba(201,162,39,.35);padding:5.5rem 0 4.5rem}
 .hero h1{font-size:clamp(1.9rem,4.6vw,3.1rem);letter-spacing:-.01em}
 .hero p.lead{color:rgba(245,244,239,.92)}
 
@@ -149,7 +149,7 @@ footer.site{background:linear-gradient(180deg, rgba(14,36,48,.35), transparent)}
   .btn:hover,.card:hover,.post-item:hover{transform:none}
 }
 @media (max-width:640px){
-  .hero{background:linear-gradient(rgba(14,39,33,.94), rgba(14,39,33,.97)), url('/assets/img/escritorio.webp') center/cover no-repeat;padding:3.25rem 0 3rem}
+  .hero{background:linear-gradient(rgba(14,39,33,.94), rgba(14,39,33,.97)), url('/assets/img/escritorio.webp') center top/cover no-repeat;padding:3.25rem 0 3rem}
 }
 
 .assinatura{margin-top:1.5rem;padding:1rem 1.25rem;border:1px solid rgba(201,162,39,.4);border-left:3px solid var(--dourado);border-radius:10px;background:rgba(14,36,48,.4);font-size:.92rem}
