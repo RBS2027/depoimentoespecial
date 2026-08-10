@@ -61,7 +61,7 @@ itens = "".join(f"""
     <pubDate>{p['iso']}T07:00:00-03:00</pubDate>
     <description>{p['desc']}</description>
   </item>""" for p in posts)
-open("blog/feed.xml","w",encoding="utf-8").write(f"""<?xml version='1.0' encoding='UTF-8'?>
+open("blog/feed.xml","w",encoding="utf-8").write(f"""<?xml version='1.0' encoding='UTF-8'?>\n<?xml-stylesheet type="text/xsl" href="/blog/feed.xsl"?>
 <rss version='2.0'><channel>
   <title>Blog Depoimento Especial — Robison Souza</title>
   <link>https://depoimentoespecial.com.br/blog/</link>
