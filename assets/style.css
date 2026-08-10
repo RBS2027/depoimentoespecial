@@ -202,8 +202,8 @@ article.prose a{text-decoration:underline;text-underline-offset:3px;text-decorat
 footer.site{padding:3.5rem 0 2.5rem;border-top:2px solid rgba(201,162,39,.35)}
 footer.site .cols{gap:2.25rem}
 @media (min-width:900px){footer.site .cols{grid-template-columns:1.35fr 1.05fr .8fr 1fr}}
-.logo-footer{height:150px;margin-bottom:1.2rem}
-footer.site .cols>div:first-child p{font-size:.84rem;line-height:1.75;color:rgba(245,244,239,.82)}
+.logo-footer{height:150px;margin-bottom:0}
+footer.site .cols>div:first-child p{display:none}
 footer.site p strong{display:block;font-family:'Montserrat',Arial,sans-serif;color:var(--dourado);text-transform:uppercase;letter-spacing:.16em;font-size:.72rem;margin-bottom:.6rem}
 footer.site p strong+br{display:none}
 footer.site .cols p{line-height:2}
