@@ -4,7 +4,7 @@ import os, json, shutil, glob
 from datetime import datetime, timezone, timedelta
 
 DOM = "https://depoimentoespecial.com.br"
-BASE = ["/", "/o-que-e-depoimento-especial/", "/assistente-tecnico/", "/escuta-especializada/",
+BASE = ["/", "/o-que-e-depoimento-especial/", "/assistente-tecnico/", "/escuta-especializada/", "/glossario/",
         "/analise-de-entrevista-forense/", "/blog/", "/quem-sou/", "/contato/"]
 MESES = ["janeiro","fevereiro","março","abril","maio","junho","julho",
          "agosto","setembro","outubro","novembro","dezembro"]
@@ -53,11 +53,27 @@ ini, fim = idx.index("<!--POSTS-->"), idx.index("<!--/POSTS-->")
 idx = idx[:ini] + "<!--POSTS-->\n" + itens + "\n" + idx[fim:]
 open("blog/index.html","w",encoding="utf-8").write(idx)
 
+itens = "".join(f"""
+  <item>
+    <title>{p['h1']}</title>
+    <link>https://depoimentoespecial.com.br/blog/{p['slug']}/</link>
+    <guid>https://depoimentoespecial.com.br/blog/{p['slug']}/</guid>
+    <pubDate>{p['iso']}T07:00:00-03:00</pubDate>
+    <description>{p['desc']}</description>
+  </item>""" for p in posts)
+open("blog/feed.xml","w",encoding="utf-8").write(f"""<?xml version='1.0' encoding='UTF-8'?>
+<rss version='2.0'><channel>
+  <title>Blog Depoimento Especial — Robison Souza</title>
+  <link>https://depoimentoespecial.com.br/blog/</link>
+  <description>Artigos técnicos diários sobre depoimento especial, entrevista forense e a Lei 13.431/2017.</description>
+  <language>pt-BR</language>{itens}
+</channel></rss>""")
+
 with open("sitemap.xml","w",encoding="utf-8") as f:
     f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
     f.write('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n')
     for u in BASE:
-        f.write(f"  <url><loc>{DOM}{u}</loc></url>\n")
+        f.write(f"  <url><loc>{DOM}{u}</loc><lastmod>{data_iso}</lastmod></url>\n")
     for p in posts:
         f.write(f"  <url><loc>{DOM}/blog/{p['slug']}/</loc><lastmod>{p['iso']}</lastmod></url>\n")
     f.write("</urlset>\n")

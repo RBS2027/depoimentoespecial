@@ -164,3 +164,33 @@ footer.site{background:linear-gradient(180deg, rgba(14,36,48,.35), transparent)}
 .estrelas{color:var(--dourado);letter-spacing:.2em;font-size:1.2rem}
 .card.avaliacao p{font-style:italic;margin-bottom:.75rem}
 .card.avaliacao .fonte{color:rgba(245,244,239,.6);font-size:.75rem;font-family:'Montserrat',Arial,sans-serif;text-transform:uppercase;letter-spacing:.08em}
+
+/* ===== Camada moderna v2 ===== */
+h1,h2{font-family:'Fraunces','Montserrat',Georgia,serif;font-weight:600;letter-spacing:0}
+h1{font-size:clamp(2rem,4.8vw,3.3rem);line-height:1.12}
+.hero h1{font-size:clamp(2.2rem,5.2vw,3.7rem);line-height:1.06;max-width:52rem}
+h2{font-size:clamp(1.45rem,2.8vw,2.05rem)}
+
+.badges{display:flex;flex-wrap:wrap;gap:.55rem;margin-top:1.6rem}
+.badge{font-family:'Montserrat',Arial,sans-serif;font-size:.7rem;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--offwhite);border:1px solid rgba(201,162,39,.45);border-radius:999px;padding:.45rem 1rem;background:rgba(14,36,48,.45);backdrop-filter:blur(6px)}
+.badge.dourado{color:#0E2721;background:linear-gradient(135deg,#DCB671,#C9A227);border-color:transparent}
+
+.card,.post-item{border-radius:18px;background:rgba(14,36,48,.34);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.photo,.card.avaliacao{border-radius:18px}
+.btn{background:linear-gradient(135deg,#D9B44A,#C9A227)}
+.btn.ghost{background:transparent}
+
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:.045;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+@media (min-width:900px){
+  section{padding:4.25rem 0}
+  .hero{padding:6.5rem 0 5.25rem}
+}
+@media (max-width:640px){
+  .badge{font-size:.62rem;padding:.4rem .8rem}
+}
+
+/* Logo oficial */
+.logo-header{height:52px;width:auto;display:block}
+.logo-footer{height:64px;width:auto;display:block;margin-bottom:.9rem}
+@media (max-width:640px){.logo-header{height:42px}}
