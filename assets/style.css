@@ -191,6 +191,6 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9999;o
 }
 
 /* Logo oficial */
-.logo-header{height:62px;width:auto;display:block}
+.logo-header{height:68px;width:auto;display:block}
 .logo-footer{height:64px;width:auto;display:block;margin-bottom:.9rem}
 @media (max-width:640px){.logo-header{height:48px}}
