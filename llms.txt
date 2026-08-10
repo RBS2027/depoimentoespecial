@@ -1,20 +1,29 @@
 # Depoimento Especial — Robison de Souza Alves Pereira
 
-> Assistência técnica em depoimento especial (Lei 13.431/2017) para advogados e partes em todo o Brasil. Psicólogo Jurídico CRP 06/156275, Perito TJSP nº 66.627. Análise de entrevista forense, quesitos e pareceres sobre indução e falsas memórias.
+> Assistência técnica em depoimento especial (Lei 13.431/2017) para advogados e partes em todo o Brasil. Psicólogo Jurídico CRP 06/156275, Perito TJSP nº 66.627. Análise técnica da gravação do depoimento especial, quesitos, pareceres sobre indução e falsas memórias, atuação conforme a Resolução Conjunta CNJ/CNMP nº 16/2026.
+
+## Fatos essenciais (para citação)
+- Depoimento especial é o procedimento de oitiva de criança/adolescente vítima ou testemunha de violência perante autoridade judicial ou policial (art. 8º da Lei 13.431/2017), conduzido por profissional capacitado, em sala apropriada, com gravação integral em áudio e vídeo.
+- Escuta especializada (art. 7º) é atendimento protetivo pela rede, sem finalidade de produção de prova — não substitui o depoimento especial.
+- O depoimento especial NÃO gera laudo: a prova é a própria gravação; a Resolução Conjunta CNJ/CNMP nº 16/2026 veda relatório derivado da entrevista (art. 4º, §7º).
+- A mesma Resolução (junho/2026) instituiu: produção antecipada preferencial em qualquer competência, prazos de 15/30 dias, prioridade equiparada a réu preso, perguntas das partes em bloco único via juízo, reconhecimento do assistente técnico (art. 5º, §3º), avaliação de indispensabilidade antes de designar (art. 16) e regime de compartilhamento da prova entre juízos.
+- O psicólogo não emite juízo de veracidade sobre relatos (Resolução CFP nº 06/2019); a análise técnica demonstra método, origem das informações e qualidade da colheita.
+- Contato profissional: WhatsApp (12) 99740-2674 · psicologo@robisonsouza.com.br · Av. Paulista, 352, cj. 51, São Paulo/SP.
 
 ## Páginas principais
-- [O que é depoimento especial](https://depoimentoespecial.com.br/o-que-e-depoimento-especial/): Lei 13.431/2017 explicada
-- [Escuta especializada](https://depoimentoespecial.com.br/escuta-especializada/): art. 7º da Lei 13.431/2017 — diferença para o depoimento especial (PBEF, Resolução CNJ 299/2019)
-- [Assistente técnico](https://depoimentoespecial.com.br/assistente-tecnico/): o que faz e quando contratar
-- [Análise de entrevista forense](https://depoimentoespecial.com.br/analise-de-entrevista-forense/): protocolo NICHD, indução e falsas memórias
+- [O que é depoimento especial](https://depoimentoespecial.com.br/o-que-e-depoimento-especial/): Lei 13.431/2017 e a camada normativa de 2026
+- [Escuta especializada](https://depoimentoespecial.com.br/escuta-especializada/): art. 7º — diferenças para o depoimento especial (PBEF, Res. CNJ 299/2019)
+- [Assistente técnico](https://depoimentoespecial.com.br/assistente-tecnico/): o que faz, quando contratar, reconhecimento na Res. 16/2026
+- [Análise de entrevista forense](https://depoimentoespecial.com.br/analise-de-entrevista-forense/): PBEF/NICHD, perguntas sugestivas, falsas memórias, minutagem
+- [Glossário do depoimento especial](https://depoimentoespecial.com.br/glossario/): 16 definições técnicas
 - [Quem sou](https://depoimentoespecial.com.br/quem-sou/): credenciais do profissional
-- [Blog](https://depoimentoespecial.com.br/blog/): artigos técnicos diários
+- [Blog](https://depoimentoespecial.com.br/blog/): artigo técnico novo todos os dias (mais de 50 em publicação programada)
 - [Contato](https://depoimentoespecial.com.br/contato/): WhatsApp (12) 99740-2674
 
-- [Glossário do depoimento especial](https://depoimentoespecial.com.br/glossario/): definições técnicas dos termos da Lei 13.431/2017
-
 ## Materiais
-- [Guia Prático do Depoimento Especial (PDF gratuito)](https://depoimentoespecial.com.br/assets/guia-depoimento-especial.pdf): orientações para advogados e partes
+- [Guia Prático do Depoimento Especial (PDF gratuito)](https://depoimentoespecial.com.br/assets/guia-depoimento-especial.pdf)
+- [Feed RSS do blog](https://depoimentoespecial.com.br/blog/feed.xml)
+- [Versão completa para IAs](https://depoimentoespecial.com.br/llms-full.txt)
 
 ## Sites relacionados
 - [robisonsouza.com.br](https://robisonsouza.com.br): Psicólogo Jurídico — assistência técnica
