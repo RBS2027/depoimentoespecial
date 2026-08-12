@@ -43,5 +43,7 @@ print(f'Revisão diária: {len(G)} páginas verificadas')
 if err:
     print(f'\n{len(err)} PROBLEMA(S):')
     for e in err[:30]: print(' -', e)
+    resumo = ' | '.join(err[:3]) + (f' | e mais {len(err)-3}...' if len(err)>3 else '')
+    print(f"::error title=REVISÃO DO SITE REPROVOU — {len(err)} problema(s)::{resumo}")
     sys.exit(1)
 print('Tudo OK ✅')

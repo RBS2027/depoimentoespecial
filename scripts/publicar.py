@@ -1,6 +1,17 @@
 # -*- coding: utf-8 -*-
 """Publica o próximo artigo da _fila no /blog, atualiza a lista e o sitemap."""
 import os, json, shutil, glob
+import sys as _sys
+def _erro_claro(tipo, valor, tb):
+    causa = f"{tipo.__name__}: {valor}"
+    dica = ""
+    s = str(valor)
+    if "meta.json" in s: dica = " — uma pasta da _fila está sem o meta.json; recrie o arquivo ou remova a pasta."
+    elif "posts.json" in s: dica = " — blog/posts.json ausente ou corrompido."
+    elif "index.html" in s: dica = " — index.html ausente na pasta indicada."
+    print(f"::error title=ROBÔ DE PUBLICAÇÃO FALHOU — artigo do dia NÃO saiu::{causa}{dica} O site continua no ar; só a publicação de hoje travou.")
+    _sys.__excepthook__(tipo, valor, tb)
+_sys.excepthook = _erro_claro
 from datetime import datetime, timezone, timedelta
 
 DOM = "https://depoimentoespecial.com.br"
