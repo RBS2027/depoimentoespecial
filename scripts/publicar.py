@@ -79,3 +79,17 @@ with open("sitemap.xml","w",encoding="utf-8") as f:
     f.write("</urlset>\n")
 
 print("Publicado:", slug, "em", data_ext, "| restam na fila:", len(fila)-1)
+
+# ---- Revisao automatica pos-publicacao (instalada em 11/08/2026) ----
+# Roda a bateria de verificacoes do site apos publicar o artigo do dia.
+# Se a revisao reprovar: garante o commit/push da publicacao e sinaliza a falha
+# (o job termina com erro e o GitHub envia e-mail automatico ao proprietario).
+import subprocess, sys
+_r = subprocess.run([sys.executable, "scripts/revisao.py"])
+if _r.returncode != 0:
+    subprocess.run(["git", "config", "user.name", "robo-publicador"])
+    subprocess.run(["git", "config", "user.email", "actions@github.com"])
+    subprocess.run(["git", "add", "-A"])
+    subprocess.run(["git", "commit", "-m", "Publicacao diaria automatica (revisao reprovou o site)"], check=False)
+    subprocess.run(["git", "push"], check=False)
+    sys.exit(1)
