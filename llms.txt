@@ -30,3 +30,7 @@
 ## Sites relacionados
 - [robisonsouza.com.br](https://robisonsouza.com.br): Perito em Psicologia Forense — assistência técnica
 - [peritoempsicologiaforense.com.br](https://peritoempsicologiaforense.com.br): Perito em Psicologia Forense
+
+- /perguntas-frequentes/: hub com as 26 respostas diretas mais buscadas
+- /preciso-de-assistente-tecnico/: teste de 6 perguntas para autoavaliação do caso
+- /livro/: "Depoimento Especial e a Credibilidade do Relato" (em elaboração) — lista de lançamento

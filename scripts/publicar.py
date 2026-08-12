@@ -5,7 +5,8 @@ from datetime import datetime, timezone, timedelta
 
 DOM = "https://depoimentoespecial.com.br"
 BASE = ["/", "/o-que-e-depoimento-especial/", "/assistente-tecnico/", "/escuta-especializada/", "/glossario/",
-        "/analise-de-entrevista-forense/", "/blog/", "/quem-sou/", "/contato/"]
+        "/analise-de-entrevista-forense/", "/consultoria/", "/politica-de-privacidade/", "/perguntas-frequentes/",
+        "/preciso-de-assistente-tecnico/", "/livro/", "/blog/", "/quem-sou/", "/contato/"]
 MESES = ["janeiro","fevereiro","março","abril","maio","junho","julho",
          "agosto","setembro","outubro","novembro","dezembro"]
 
