@@ -60,3 +60,9 @@ footer.site .cols>div:first-child p{font-size:.88rem;opacity:.85;line-height:1.8
 .mapa-escuro{margin-top:.2rem}
 .link-mapa{display:inline-block;margin-top:.55rem;font-family:'Montserrat',sans-serif;font-size:.72rem;letter-spacing:.07em;text-transform:uppercase;color:#DCB671}
 footer.site .legal{margin-top:2rem;padding-top:1.4rem;border-top:1px solid rgba(201,162,39,.25);font-size:.82rem;opacity:.8;line-height:1.8}
+
+/* mapa em faixa no rodapé */
+.mapa-rodape{margin-top:1.8rem;border-radius:12px;overflow:hidden;border:1px solid rgba(220,182,113,.35)}
+.mapa-rodape iframe{width:100%;height:250px;border:0;display:block}
+.mapa-acao{display:flex;justify-content:space-between;align-items:center;gap:1rem;margin-top:.6rem;flex-wrap:wrap}
+.mapa-acao span{font-size:.88rem;opacity:.85}
