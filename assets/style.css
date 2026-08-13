@@ -71,3 +71,5 @@ footer.site .cols>div:first-child{display:flex;flex-direction:column;justify-con
 footer.site .cols>div:first-child .logo-footer{margin:0 auto}
 
 .zap-foto{width:56px;height:56px;border-radius:50%;object-fit:cover;object-position:top;border:2px solid #fff;flex:none}
+
+.ico-pino{display:inline-block;animation:pino-quica 4s ease-in-out infinite}@keyframes pino-quica{0%,80%,100%{transform:translateY(0)}84%{transform:translateY(-4px)}88%{transform:translateY(0)}92%{transform:translateY(-2px)}96%{transform:translateY(0)}}@media (prefers-reduced-motion:reduce){.ico-pino{animation:none}}
