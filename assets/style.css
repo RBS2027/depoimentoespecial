@@ -36,3 +36,12 @@ article h2,article h3{scroll-margin-top:1.2rem}
  .art-hero{display:none!important}
  .assinatura,.autor-box{border-color:#999}
 }
+
+/* faixa de captura no topo do rodapé */
+.news-band{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem;border-bottom:1px solid rgba(201,162,39,.3);padding-bottom:1.4rem;margin-bottom:1.8rem}
+.news-band h2{font-size:1.15rem;margin:0 0 .25rem}
+.news-band p{margin:0;font-size:.9rem;opacity:.85}
+.news-band form{display:flex;gap:.6rem;flex-wrap:wrap;align-items:center}
+.news-band input[type=email]{min-width:16rem}
+.news-band .btn{margin-top:0}
+@media(max-width:640px){.news-band{flex-direction:column;align-items:flex-start}}
