@@ -7,7 +7,7 @@
 /* refinos do rodapé v2 */
 footer.site .cols a{text-decoration:none}
 footer.site .cols a:hover{color:#DCB671;text-decoration:underline}
-.mapa-escuro iframe{filter:invert(88%) sepia(45%) hue-rotate(355deg) saturate(120%) brightness(.95) contrast(94%)}
+
 .ft-ico{width:13px;height:13px;stroke:#C9A227;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;vertical-align:-1px;margin-right:.35rem}
 .ft-news input[type=email]{width:100%;max-width:15.5rem;padding:.5rem .7rem;border-radius:8px;border:1px solid rgba(220,182,113,.5);background:rgba(255,255,255,.06);color:#F5F4EF;font-family:'Lora',Georgia,serif}
 .ft-news .btn{padding:.5rem 1.1rem;font-size:.72rem;margin-top:.55rem}
