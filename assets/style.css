@@ -11,3 +11,28 @@ footer.site .cols a:hover{color:#DCB671;text-decoration:underline}
 .ft-ico{width:13px;height:13px;stroke:#C9A227;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;vertical-align:-1px;margin-right:.35rem}
 .ft-news input[type=email]{width:100%;max-width:15.5rem;padding:.5rem .7rem;border-radius:8px;border:1px solid rgba(220,182,113,.5);background:rgba(255,255,255,.06);color:#F5F4EF;font-family:'Lora',Georgia,serif}
 .ft-news .btn{padding:.5rem 1.1rem;font-size:.72rem;margin-top:.55rem}
+
+/* melhorias v3: acessibilidade, índice, autor, impressão */
+.pular{position:absolute;left:-999px;top:-999px}
+.pular:focus{left:12px;top:12px;position:fixed;z-index:300;background:linear-gradient(135deg,#DCB671,#C9A227);color:#0E2721;padding:.6rem 1.1rem;border-radius:10px;font-family:'Montserrat',sans-serif;font-weight:600;text-decoration:none}
+:focus-visible{outline:2px solid #DCB671;outline-offset:2px}
+html{scroll-behavior:smooth}
+article h2,article h3{scroll-margin-top:1.2rem}
+.indice{border:1px solid rgba(201,162,39,.35);border-radius:12px;padding:1rem 1.25rem;margin:1.3rem 0;background:rgba(14,36,48,.35)}
+.indice strong{font-family:'Montserrat',sans-serif;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:#DCB671}
+.indice ol{margin:.55rem 0 0;padding-left:1.15rem}
+.indice li{margin:.25rem 0}
+.indice a{text-decoration:none}
+.indice a:hover{text-decoration:underline;color:#DCB671}
+.autor-box{display:flex;gap:1.1rem;align-items:flex-start;border-top:1px solid rgba(201,162,39,.35);padding-top:1.3rem;margin-top:1.8rem}
+.autor-box .autor-foto{width:76px;height:auto;border-radius:10px;border:1px solid rgba(220,182,113,.4);flex:none}
+.autor-box .assinatura{margin:0;border:0;padding:0}
+@media print{
+ header.site,footer.site,.zap-flutuante,.cta-band,.ft-news,.indice,form,iframe{display:none!important}
+ body{background:#fff!important;color:#111!important}
+ article,article.prose,main{color:#111!important;max-width:100%!important}
+ h1,h2,h3,dt{color:#000!important}
+ a{color:#111!important;text-decoration:underline}
+ .art-hero{display:none!important}
+ .assinatura,.autor-box{border-color:#999}
+}
