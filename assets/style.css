@@ -124,3 +124,4 @@ article.prose h2[id^="caso-ilustrativo"]+p{border:1px solid rgba(201,162,39,.3);
 .perguntas>div{position:relative;border:1px solid rgba(201,162,39,.32);border-radius:16px;background:rgba(14,36,48,.32);padding:2.9rem 1.15rem 1.1rem;font-size:.98rem;line-height:1.55}
 .perguntas>div::before{content:"?";position:absolute;top:.95rem;left:1.05rem;display:flex;align-items:center;justify-content:center;width:1.7rem;height:1.7rem;border-radius:50%;background:linear-gradient(135deg,#DCB671,#C9A227);color:#0E2721;font-family:'Montserrat',Arial,sans-serif;font-weight:800;font-size:1.05rem}
 @media(max-width:640px){.perguntas{grid-template-columns:1fr}}
+@media(min-width:860px) and (max-width:1199px){nav.main{gap:.6rem 1.05rem}nav.main a{font-size:.85rem}header.site .logo-header{height:52px}}
