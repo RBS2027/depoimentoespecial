@@ -24,3 +24,7 @@ jobs:
           git add -A
           git diff --cached --quiet || git commit -m "Publicacao diaria automatica"
           git push
+      - name: Instrucao em caso de falha
+        if: failure()
+        run: |
+          echo "::error title=ABRA O CLAUDE E DIGA::Claude, conserta os sites — chegou alarme do GitHub (publicacao diaria). Ele investiga a causa e corrige sozinho."
