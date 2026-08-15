@@ -15,3 +15,31 @@ jobs:
       - uses: actions/checkout@v4
       - name: Rodar bateria de verificacoes
         run: python3 scripts/revisao.py
+
+      - name: Sensor de fila (integridade dos proximos artigos)
+        shell: python
+        run: |
+          import os, sys, glob, json
+          problemas = []
+          dirs = sorted(glob.glob("_fila/*/"))
+          if len(dirs) < 5:
+              problemas.append(f"FILA ACABANDO: restam {len(dirs)} artigos — reabastecer")
+          for d in dirs:
+              if not os.path.exists(d + "index.html"):
+                  problemas.append(f"{d} sem index.html")
+              if not os.path.exists(d + "meta.json"):
+                  problemas.append(f"{d} sem meta.json")
+              else:
+                  try:
+                      m = json.load(open(d + "meta.json", encoding="utf-8"))
+                      for campo in ("slug", "h1", "desc"):
+                          if not m.get(campo): problemas.append(f"{d} meta.json sem campo {campo}")
+                      if os.path.isdir("blog/" + m.get("slug", "")):
+                          problemas.append(f"{d} slug ja publicado no blog (fantasma)")
+                  except Exception as e:
+                      problemas.append(f"{d} meta.json invalido: {e}")
+          if problemas:
+              for p in problemas:
+                  print(f"::error title=FILA COM DEFEITO — o robo vai travar::{p}")
+              sys.exit(1)
+          print(f"Fila integra: {len(dirs)} artigos prontos para publicar.")
