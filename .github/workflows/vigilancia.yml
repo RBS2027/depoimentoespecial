@@ -76,3 +76,7 @@ jobs:
                   print(f"::error title=SITE COM PROBLEMA::{f}")
               sys.exit(1)
           print("Os 4 sites no ar e íntegros.")
+      - name: Instrucao em caso de falha
+        if: failure()
+        run: |
+          echo "::error title=ABRA O CLAUDE E DIGA::Claude, conserta os sites — chegou alarme do GitHub (vigilancia). Ele investiga a causa e corrige sozinho."
