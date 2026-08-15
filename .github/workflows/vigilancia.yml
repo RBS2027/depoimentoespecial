@@ -31,6 +31,25 @@ jobs:
                               falhas.append(f"{url} -> marca ausente: {m}")
               except Exception as e:
                   falhas.append(f"{url} -> FORA DO AR: {e}")
+          # SENSOR DE CADÊNCIA: os blogs dos portais publicaram nas últimas 48h?
+          import json as _json, datetime as _dt
+          for blog in ["https://depoimentoespecial.com.br/blog/posts.json",
+                       "https://estudopsicossocial.com.br/blog/posts.json"]:
+              try:
+                  req = urllib.request.Request(blog, headers={"User-Agent": "RBS-Vigilancia/1.0"})
+                  with urllib.request.urlopen(req, timeout=30) as r:
+                      posts = _json.load(r)
+                  lista = posts if isinstance(posts, list) else posts.get("posts", [])
+                  datas = [p.get("date","") for p in lista]
+                  ultima = max((d for d in datas if d), default="")
+                  if not ultima:
+                      falhas.append(f"{blog} -> sem datas legiveis")
+                  else:
+                      dias = (_dt.date.today() - _dt.date.fromisoformat(ultima[:10])).days
+                      if dias > 1:
+                          falhas.append(f"{blog} -> BLOG PARADO ha {dias} dias (ultimo: {ultima[:10]})")
+              except Exception as e:
+                  falhas.append(f"{blog} -> falha ao checar cadencia: {e}")
           if falhas:
               for f in falhas:
                   print(f"::error title=SITE COM PROBLEMA::{f}")
