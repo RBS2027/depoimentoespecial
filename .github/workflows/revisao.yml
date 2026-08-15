@@ -43,3 +43,7 @@ jobs:
                   print(f"::error title=FILA COM DEFEITO — o robo vai travar::{p}")
               sys.exit(1)
           print(f"Fila integra: {len(dirs)} artigos prontos para publicar.")
+      - name: Instrucao em caso de falha
+        if: failure()
+        run: |
+          echo "::error title=ABRA O CLAUDE E DIGA::Claude, conserta os sites — chegou alarme do GitHub (revisao/fila). Ele investiga a causa e corrige sozinho."
