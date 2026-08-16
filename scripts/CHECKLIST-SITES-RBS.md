@@ -42,3 +42,10 @@ Uso: itens SEMANAIS toda segunda-feira; MENSAIS no dia 1º; o robô de vigilânc
 - E-mail do robô de vigilância
 - Usuário admin novo no WordPress
 - Aviso do navegador ("site não seguro") em qualquer um dos 4
+
+
+## ATUALIZAÇÃO 16/08/2026 — Migração
+- NOVO: repo RBS2027/perito = site estático completo do peritoempsicologiaforense (deploy perito-f1h.pages.dev; robôs próprios publicar 10:05 + revisão 11:30 BRT; _redirects com 106 regras; sitemap 150 URLs).
+- COFRE: ramo site-perito do repo depoimentoespecial guarda: site-robisonsouza/ (site estático completo do robisonsouza, 611 arquivos, pronto p/ repo próprio) e cofre-robisonsouza/ (export integral 500 posts em 3 partes).
+- Conferência semanal ganha 1 item: runs do repo perito (Actions) verdes.
+- Regra de ritmo Hostinger: 1 lote de gravações WP/dia, sleep 1,5s, 40-60 itens.
