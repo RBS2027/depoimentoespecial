@@ -40,7 +40,7 @@ jobs:
                   with urllib.request.urlopen(req, timeout=30) as r:
                       posts = _json.load(r)
                   lista = posts if isinstance(posts, list) else posts.get("posts", [])
-                  datas = [p.get("date","") for p in lista]
+                  datas = [p.get("iso") or p.get("date") or p.get("data","") for p in lista]
                   ultima = max((d for d in datas if d), default="")
                   if not ultima:
                       falhas.append(f"{blog} -> sem datas legiveis")
