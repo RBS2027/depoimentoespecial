@@ -141,3 +141,6 @@ article.prose h2[id^="caso-ilustrativo"]+p{border:1px solid rgba(201,162,39,.3);
 .breadcrumb{display:block;color:var(--champanhe);text-transform:uppercase;letter-spacing:.22em;font-size:.72rem;font-weight:600;margin-bottom:.9rem}
 .qz{border:1px solid rgba(201,162,39,.35);border-radius:10px;padding:1rem 1.2rem;margin:0 0 .9rem;background:rgba(14,36,48,.35)}
 .qz label{cursor:pointer}
+
+/* Rede de segurança: nenhuma imagem estoura a largura da tela no celular */
+img{max-width:100%}
