@@ -125,3 +125,7 @@ article.prose h2[id^="caso-ilustrativo"]+p{border:1px solid rgba(201,162,39,.3);
 .perguntas>div::before{content:"?";position:absolute;top:.95rem;left:1.05rem;display:flex;align-items:center;justify-content:center;width:1.7rem;height:1.7rem;border-radius:50%;background:linear-gradient(135deg,#DCB671,#C9A227);color:#0E2721;font-family:'Montserrat',Arial,sans-serif;font-weight:800;font-size:1.05rem}
 @media(max-width:640px){.perguntas{grid-template-columns:1fr}}
 @media(min-width:860px) and (max-width:1199px){nav.main{gap:.6rem .95rem}nav.main a{font-size:.74rem}header.site .logo-header{height:46px}}
+/* Capa dourada — faixa fina animada no topo de toda página */
+.capa-dourada{height:4px;width:100%;background:linear-gradient(90deg,#C9A227,#F0C878,#F3E3C2,#F0C878,#C9A227);background-size:200% 100%;animation:capa-flow 6s linear infinite}
+@keyframes capa-flow{0%{background-position:0% 0}100%{background-position:200% 0}}
+@media(prefers-reduced-motion:reduce){.capa-dourada{animation:none}}
