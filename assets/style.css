@@ -129,3 +129,15 @@ article.prose h2[id^="caso-ilustrativo"]+p{border:1px solid rgba(201,162,39,.3);
 .capa-dourada{height:4px;width:100%;background:linear-gradient(90deg,#C9A227,#F0C878,#F3E3C2,#F0C878,#C9A227);background-size:200% 100%;animation:capa-flow 6s linear infinite}
 @keyframes capa-flow{0%{background-position:0% 0}100%{background-position:200% 0}}
 @media(prefers-reduced-motion:reduce){.capa-dourada{animation:none}}
+
+/* Caixa de sub-hero / manifesto / descrição — classes usadas no HTML mas sem CSS (achado 24/08) */
+.hero .sub-hero{background:var(--offwhite);color:var(--verde);padding:.14em .5em;box-shadow:0 2px 14px rgba(0,0,0,.28);-webkit-box-decoration-break:clone;box-decoration-break:clone;font-weight:700}
+.hero p.sub-wrap{max-width:50ch;margin:1.15rem 0 1.25rem}
+.hero .manifesto{font-family:'Fraunces',Georgia,serif;font-style:italic;font-weight:500;font-size:1.5rem;line-height:1.5;color:var(--champanhe);max-width:56ch;margin-bottom:1rem}
+.hero .sub-desc{font-size:1rem;line-height:1.8;color:var(--offwhite);max-width:56ch}
+@media(min-width:760px){.hero .sub-hero{font-size:clamp(.78rem,1.44vw,1.06rem)}}
+
+/* Breadcrumb (mesmo papel do .eyebrow, nome usado em algumas páginas) + quiz do teste */
+.breadcrumb{display:block;color:var(--champanhe);text-transform:uppercase;letter-spacing:.22em;font-size:.72rem;font-weight:600;margin-bottom:.9rem}
+.qz{border:1px solid rgba(201,162,39,.35);border-radius:10px;padding:1rem 1.2rem;margin:0 0 .9rem;background:rgba(14,36,48,.35)}
+.qz label{cursor:pointer}
