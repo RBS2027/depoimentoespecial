@@ -91,6 +91,7 @@ with open("sitemap.xml","w",encoding="utf-8") as f:
     f.write("</urlset>\n")
 
 print("Publicado:", slug, "em", data_ext, "| restam na fila:", len(fila)-1)
+print("INDEXNOW_URL=" + DOM + "/blog/" + slug + "/")
 
 # ---- Revisao automatica pos-publicacao (instalada em 11/08/2026) ----
 # Roda a bateria de verificacoes do site apos publicar o artigo do dia.
