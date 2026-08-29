@@ -31,10 +31,12 @@ jobs:
                               falhas.append(f"{url} -> marca ausente: {m}")
               except Exception as e:
                   falhas.append(f"{url} -> FORA DO AR: {e}")
-          # SENSOR DE CADÊNCIA: os blogs dos portais publicaram nas últimas 48h?
+          # SENSOR DE CADÊNCIA: os 4 sites (agora todos estáticos) publicaram nas últimas 48h?
           import json as _json, datetime as _dt
           for blog in ["https://depoimentoespecial.com.br/blog/posts.json",
-                       "https://estudopsicossocial.com.br/blog/posts.json"]:
+                       "https://estudopsicossocial.com.br/blog/posts.json",
+                       "https://robisonsouza.com.br/blog/posts.json",
+                       "https://peritoempsicologiaforense.com.br/blog/posts.json"]:
               try:
                   req = urllib.request.Request(blog, headers={"User-Agent": "RBS-Vigilancia/1.0"})
                   with urllib.request.urlopen(req, timeout=30) as r:
@@ -50,27 +52,6 @@ jobs:
                           falhas.append(f"{blog} -> BLOG PARADO ha {dias} dias (ultimo: {ultima[:10]})")
               except Exception as e:
                   falhas.append(f"{blog} -> falha ao checar cadencia: {e}")
-          # CADÊNCIA DOS WORDPRESS: post mais novo tem no máximo 3 dias?
-          for wp in ["https://robisonsouza.com.br"]:
-              try:
-                  req = urllib.request.Request(wp + "/wp-json/wp/v2/posts?per_page=1&orderby=date&order=desc",
-                                               headers={"User-Agent": "RBS-Vigilancia/1.0"})
-                  with urllib.request.urlopen(req, timeout=30) as r:
-                      import json as _j, datetime as _d
-                      ultimo = _j.load(r)[0]["date"][:10]
-                      dias = (_d.date.today() - _d.date.fromisoformat(ultimo)).days
-                      if dias > 3:
-                          falhas.append(f"{wp} -> AGENDADOS PARADOS ha {dias} dias (ultimo: {ultimo})")
-              except Exception as e:
-                  falhas.append(f"{wp} -> falha ao checar cadencia WP: {e}")
-          # DESPERTADOR: aciona o wp-cron dos 2 WP para os agendados sairem na hora
-          for wp in ["https://robisonsouza.com.br"]:
-              try:
-                  req = urllib.request.Request(wp + "/wp-cron.php?doing_wp_cron",
-                                               headers={"User-Agent": "RBS-Vigilancia/1.0"})
-                  urllib.request.urlopen(req, timeout=30).read()
-              except Exception:
-                  pass  # despertador e melhor esforco; a cadencia acima acusa se algo travar
           if falhas:
               for f in falhas:
                   print(f"::error title=SITE COM PROBLEMA::{f}")
