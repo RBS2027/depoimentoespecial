@@ -31,6 +31,11 @@ data_ext = f"{agora.day} de {MESES[agora.month-1]} de {agora.year}"
 data_iso = agora.strftime("%Y-%m-%d")
 
 posts_prev = json.load(open("blog/posts.json", encoding="utf-8"))
+# TRAVA DE IDEMPOTENCIA: se o artigo mais recente ja tem a data de hoje, nao publica de novo
+# (protege contra disparo manual/watchdog no mesmo dia em que o cron ja rodou)
+if posts_prev and posts_prev[0].get("iso") == data_iso:
+    print(f"ja publicado hoje ({data_iso}) — nada a fazer.")
+    raise SystemExit(0)
 ja = {p["slug"] for p in posts_prev}
 src = None
 for cand in fila:
