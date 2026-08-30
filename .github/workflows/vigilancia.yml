@@ -8,10 +8,12 @@ jobs:
   verificar:
     runs-on: ubuntu-latest
     steps:
-      - name: Verificar os 4 sites
+      - name: Verificar os 4 sites e autocurar publicacao atrasada
         shell: python
+        env:
+          DISPATCH_TOKEN: ${{ secrets.DISPATCH_TOKEN }}
         run: |
-          import urllib.request, sys
+          import urllib.request, sys, os
           SITES = {
             "https://depoimentoespecial.com.br/": ["Perito em Psicologia Forense", "wa.me/5512997402674"],
             "https://estudopsicossocial.com.br/": ["Perito em Psicologia Forense", "wa.me/5512997402674"],
@@ -31,12 +33,17 @@ jobs:
                               falhas.append(f"{url} -> marca ausente: {m}")
               except Exception as e:
                   falhas.append(f"{url} -> FORA DO AR: {e}")
-          # SENSOR DE CADÊNCIA: os 4 sites (agora todos estáticos) publicaram nas últimas 48h?
+          # SENSOR DE CADÊNCIA + AUTOCURA: os 4 sites (agora todos estáticos) publicaram nas últimas 48h?
+          # Se algum ficou pra tras, dispara a publicacao dele agora mesmo (nao so avisa por e-mail).
           import json as _json, datetime as _dt
-          for blog in ["https://depoimentoespecial.com.br/blog/posts.json",
-                       "https://estudopsicossocial.com.br/blog/posts.json",
-                       "https://robisonsouza.com.br/blog/posts.json",
-                       "https://peritoempsicologiaforense.com.br/blog/posts.json"]:
+          REPO_DO_BLOG = {
+              "https://depoimentoespecial.com.br/blog/posts.json": "depoimentoespecial",
+              "https://estudopsicossocial.com.br/blog/posts.json": "estudopsicossocial",
+              "https://robisonsouza.com.br/blog/posts.json": "robisonsouza",
+              "https://peritoempsicologiaforense.com.br/blog/posts.json": "perito",
+          }
+          curados = []
+          for blog, repo in REPO_DO_BLOG.items():
               try:
                   req = urllib.request.Request(blog, headers={"User-Agent": "RBS-Vigilancia/1.0"})
                   with urllib.request.urlopen(req, timeout=30) as r:
@@ -46,17 +53,38 @@ jobs:
                   ultima = max((d for d in datas if d), default="")
                   if not ultima:
                       falhas.append(f"{blog} -> sem datas legiveis")
-                  else:
-                      dias = (_dt.date.today() - _dt.date.fromisoformat(ultima[:10])).days
-                      if dias > 1:
-                          falhas.append(f"{blog} -> BLOG PARADO ha {dias} dias (ultimo: {ultima[:10]})")
+                      continue
+                  dias = (_dt.date.today() - _dt.date.fromisoformat(ultima[:10])).days
+                  if dias > 1:
+                      if not os.environ.get("DISPATCH_TOKEN"):
+                          falhas.append(f"{blog} -> BLOG PARADO ha {dias} dias (ultimo: {ultima[:10]}) — SEM DISPATCH_TOKEN configurado, nao foi possivel autocurar")
+                          continue
+                      try:
+                          disp_req = urllib.request.Request(
+                              f"https://api.github.com/repos/RBS2027/{repo}/actions/workflows/publicar-diario.yml/dispatches",
+                              method="POST",
+                              data=_json.dumps({"ref": "main"}).encode(),
+                              headers={
+                                  "Authorization": f"Bearer {os.environ['DISPATCH_TOKEN']}",
+                                  "Accept": "application/vnd.github+json",
+                                  "Content-Type": "application/json",
+                              },
+                          )
+                          with urllib.request.urlopen(disp_req, timeout=30) as dr:
+                              pass
+                          curados.append(f"{repo} (parado ha {dias} dias, ultimo: {ultima[:10]})")
+                      except Exception as de:
+                          falhas.append(f"{blog} -> BLOG PARADO ha {dias} dias E FALHA AO AUTOCURAR: {de}")
               except Exception as e:
                   falhas.append(f"{blog} -> falha ao checar cadencia: {e}")
+          if curados:
+              print("::warning title=AUTOCURA ACIONADA::Disparada publicacao manual em: " + "; ".join(curados))
           if falhas:
               for f in falhas:
                   print(f"::error title=SITE COM PROBLEMA::{f}")
               sys.exit(1)
-          print("Os 4 sites no ar e íntegros.")
+          print("Os 4 sites no ar e íntegros." + (f" (autocura acionada em {len(curados)} site(s))" if curados else ""))
+
       - name: Instrucao em caso de falha
         if: failure()
         run: |
