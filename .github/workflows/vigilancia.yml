@@ -20,17 +20,29 @@ jobs:
             "https://robisonsouza.com.br/": ["Robison"],
             "https://peritoempsicologiaforense.com.br/": ["Robison"],
           }
+          import time
+          def _tentar_com_retry(url, tentativas=3):
+              ultimo_erro = None
+              for i in range(tentativas):
+                  try:
+                      req = urllib.request.Request(url, headers={"User-Agent": "RBS-Vigilancia/1.0"})
+                      with urllib.request.urlopen(req, timeout=30) as r:
+                          return r.status, r.read().decode("utf-8", "ignore")
+                  except Exception as e:
+                      ultimo_erro = e
+                      if i < tentativas - 1:
+                          time.sleep(5)
+              raise ultimo_erro
+
           falhas = []
           for url, marcas in SITES.items():
               try:
-                  req = urllib.request.Request(url, headers={"User-Agent": "RBS-Vigilancia/1.0"})
-                  with urllib.request.urlopen(req, timeout=30) as r:
-                      corpo = r.read().decode("utf-8", "ignore")
-                      if r.status != 200:
-                          falhas.append(f"{url} -> HTTP {r.status}")
-                      for m in marcas:
-                          if m not in corpo:
-                              falhas.append(f"{url} -> marca ausente: {m}")
+                  status, corpo = _tentar_com_retry(url)
+                  if status != 200:
+                      falhas.append(f"{url} -> HTTP {status}")
+                  for m in marcas:
+                      if m not in corpo:
+                          falhas.append(f"{url} -> marca ausente: {m}")
               except Exception as e:
                   falhas.append(f"{url} -> FORA DO AR: {e}")
           # SENSOR DE CADÊNCIA + AUTOCURA: os 4 sites (agora todos estáticos) publicaram nas últimas 48h?
@@ -43,11 +55,22 @@ jobs:
               "https://peritoempsicologiaforense.com.br/blog/posts.json": "perito",
           }
           curados = []
+          def _tentar_json_com_retry(url, tentativas=3):
+              ultimo_erro = None
+              for i in range(tentativas):
+                  try:
+                      req = urllib.request.Request(url, headers={"User-Agent": "RBS-Vigilancia/1.0"})
+                      with urllib.request.urlopen(req, timeout=30) as r:
+                          return _json.load(r)
+                  except Exception as e:
+                      ultimo_erro = e
+                      if i < tentativas - 1:
+                          time.sleep(5)
+              raise ultimo_erro
+
           for blog, repo in REPO_DO_BLOG.items():
               try:
-                  req = urllib.request.Request(blog, headers={"User-Agent": "RBS-Vigilancia/1.0"})
-                  with urllib.request.urlopen(req, timeout=30) as r:
-                      posts = _json.load(r)
+                  posts = _tentar_json_com_retry(blog)
                   lista = posts if isinstance(posts, list) else posts.get("posts", [])
                   datas = [p.get("iso") or p.get("date") or p.get("data","") for p in lista]
                   ultima = max((d for d in datas if d), default="")
