@@ -131,7 +131,7 @@ article.prose h2[id^="caso-ilustrativo"]+p{border:1px solid rgba(201,162,39,.3);
 @media(prefers-reduced-motion:reduce){.capa-dourada{animation:none}}
 
 /* Caixa de sub-hero / manifesto / descrição — classes usadas no HTML mas sem CSS (achado 24/08) */
-.hero .sub-hero{background:var(--offwhite);color:var(--verde);padding:0 .5em;-webkit-box-decoration-break:clone;box-decoration-break:clone;font-weight:700}
+.hero .sub-hero{background:var(--offwhite);color:var(--verde);padding:.4em .7em;display:inline-block;font-weight:700}
 .hero p.sub-wrap{max-width:50ch;margin:1.15rem 0 1.25rem}
 .hero .manifesto{font-family:'Fraunces',Georgia,serif;font-style:italic;font-weight:500;font-size:1.5rem;line-height:1.5;color:var(--champanhe);max-width:56ch;margin-bottom:1rem}
 .hero .sub-desc{font-size:1rem;line-height:1.8;color:var(--offwhite);max-width:56ch}
