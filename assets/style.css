@@ -144,3 +144,5 @@ article.prose h2[id^="caso-ilustrativo"]+p{border:1px solid rgba(201,162,39,.3);
 
 /* Rede de segurança: nenhuma imagem estoura a largura da tela no celular */
 img{max-width:100%}
+
+@media(max-width:640px){.stats>div{min-width:0}.stats .num{font-size:1.35rem;overflow-wrap:anywhere}}
