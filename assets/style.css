@@ -59,7 +59,7 @@ footer.site .cols>div:first-child p{font-size:.88rem;opacity:.85;line-height:1.8
 .ft-rotulo{display:block;margin-bottom:.1rem}
 .mapa-escuro{margin-top:.2rem}
 .link-mapa{display:inline-block;margin-top:.55rem;font-family:'Montserrat',sans-serif;font-size:.72rem;letter-spacing:.07em;text-transform:uppercase;color:#DCB671}
-footer.site .legal{margin-top:2rem;padding-top:1.4rem;border-top:1px solid rgba(201,162,39,.25);font-size:.82rem;opacity:.8;line-height:1.8}
+footer.site .legal{margin-top:2rem;padding-top:1.4rem;padding-right:15rem;border-top:1px solid rgba(201,162,39,.25);font-size:.82rem;opacity:.8;line-height:1.8}@media(max-width:640px){footer.site .legal{padding-right:0;padding-bottom:4rem}}
 
 /* mapa em faixa no rodapé */
 .mapa-rodape{margin-top:1.8rem;border-radius:12px;overflow:hidden;border:1px solid rgba(220,182,113,.35)}
