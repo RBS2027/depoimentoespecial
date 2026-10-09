@@ -259,3 +259,13 @@ h2[style*="text-align:center"]::after,h2[style*="text-align: center"]::after{lef
 .rbs-cta-2026 a{color:#FFFDFA;text-decoration:underline;font-weight:600}
 .rbs-portal-2026{background:#E6D9CA;border-left:3px solid #A66F3E;padding:.8rem 1rem;border-radius:0 10px 10px 0;margin:1.2rem 0;font-size:.95rem}
 .rbs-portal-2026 a{color:#A66F3E;font-weight:600}
+/* contraste WCAG AA (09/10/2026): tons de cobre escurecidos só em texto */
+:root{--cobre-texto:#7A4E27}
+nav.main a[aria-current="page"]:not([href="/contato/"]){color:var(--cobre-texto)}
+.eyebrow{color:var(--cobre-texto)}
+article a:not(.btn),.prosa a:not(.btn),.callout a,main p a:not(.btn){color:var(--cobre-texto)}
+.callout strong{color:var(--cobre-texto)}
+footer.site{--cobre:var(--cobre-texto);--dourado:var(--cobre-texto);--champanhe:var(--cobre-texto)}
+footer.site strong,footer.site em{color:var(--cobre-texto)!important}
+footer .legal,footer.site .legal{color:#5F5449}
+footer .legal,footer.site .legal{opacity:1}
