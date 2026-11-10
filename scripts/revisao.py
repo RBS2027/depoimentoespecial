@@ -35,7 +35,7 @@ for p in G:
         if not (os.path.isdir('blog/'+m.group(2)) or m.group(2) in slugs): err.append(f'{p}: link {m.group(1)}')
 # 6) fila alimentada (alerta com 5 dias de antecedência do fim)
 import datetime
-falta = len(glob.glob('_fila/*/')) - (datetime.date.today() - datetime.date(2026,8,10)).days
+falta = len(glob.glob('_fila/*/'))  # 1 artigo por dia: o saldo é o tamanho da fila
 if falta <= 5: err.append(f'FILA ACABANDO: restam ~{falta} artigos agendados — produzir novo lote')
 # resultado
 err=sorted(set(err))
