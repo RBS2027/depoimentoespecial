@@ -410,3 +410,8 @@ footer.site{background:#EADFD1;border-top:0}
 @media print{body::before{display:none!important}}
 /* artigos do blog: coluna de leitura confortável (linhas de ~75 caracteres) */
 @media(min-width:900px){article.prose:has(.art-hero){max-width:50rem;margin-left:auto;margin-right:auto}}
+
+/* correções da varredura (10/11): chamada escura com texto claro; linhas sem espaço não estouram a largura */
+article.prosa .rbs-cta-2026 strong,.rbs-cta-2026 strong{color:#EAD9C3!important}
+article.prosa .rbs-cta-2026 a,.rbs-cta-2026 a{color:#FFFDFA!important;text-decoration-color:rgba(255,253,250,.6)}
+article.prosa,article.prose{overflow-wrap:break-word}
