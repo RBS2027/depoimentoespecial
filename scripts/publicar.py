@@ -1,3 +1,4 @@
+import re
 # -*- coding: utf-8 -*-
 """Publica o próximo artigo da _fila no /blog, atualiza a lista e o sitemap."""
 import os, json, shutil, glob
@@ -91,7 +92,10 @@ with open("sitemap.xml","w",encoding="utf-8") as f:
     f.write('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n')
     for u in BASE:
         f.write(f"  <url><loc>{DOM}{u}</loc><lastmod>{data_iso}</lastmod></url>\n")
+    # páginas por estado ficam fora do índice até receberem conteúdo local (noindex desde 10/11/2026)
+    NOINDEX_ESTADOS = re.compile(r'^assistente-tecnico-em-depoimento-especial-(em|no|na)-')
     for p in posts:
+        if NOINDEX_ESTADOS.match(p['slug']): continue
         f.write(f"  <url><loc>{DOM}/blog/{p['slug']}/</loc><lastmod>{p['iso']}</lastmod></url>\n")
     f.write("</urlset>\n")
 
