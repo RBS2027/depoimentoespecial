@@ -415,3 +415,7 @@ footer.site{background:#EADFD1;border-top:0}
 article.prosa .rbs-cta-2026 strong,.rbs-cta-2026 strong{color:#EAD9C3!important}
 article.prosa .rbs-cta-2026 a,.rbs-cta-2026 a{color:#FFFDFA!important;text-decoration-color:rgba(255,253,250,.6)}
 article.prosa,article.prose{overflow-wrap:break-word}
+
+/* Menu em telas de notebook (11/11/2026): cabe sem rolagem lateral entre 860px e 1400px */
+@media(min-width:860px) and (max-width:1400px){header.site nav.main{min-width:0;gap:.05rem}nav.main a:not([href="/contato/"]){padding:.45rem .45rem;font-size:.7rem;letter-spacing:.03em}nav.main a[href="/contato/"]{padding:.4rem .75rem;font-size:.7rem;letter-spacing:.03em}header.site .logo-header{height:46px}header.site .brand{margin-right:.5rem}header.site .wrap{gap:.6rem}}
+@media(min-width:860px) and (max-width:1120px){header.site nav.main{flex-wrap:wrap;justify-content:flex-end;row-gap:.1rem}header.site .logo-header{height:40px}}
