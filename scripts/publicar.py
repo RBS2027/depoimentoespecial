@@ -93,9 +93,10 @@ with open("sitemap.xml","w",encoding="utf-8") as f:
     for u in BASE:
         f.write(f"  <url><loc>{DOM}{u}</loc><lastmod>{data_iso}</lastmod></url>\n")
     # páginas por estado ficam fora do índice até receberem conteúdo local (noindex desde 10/11/2026)
+    ESTADOS_LIBERADOS = {'assistente-tecnico-em-depoimento-especial-em-minas-gerais', 'assistente-tecnico-em-depoimento-especial-na-bahia', 'assistente-tecnico-em-depoimento-especial-em-santa-catarina', 'assistente-tecnico-em-depoimento-especial-no-distrito-federal', 'assistente-tecnico-em-depoimento-especial-em-pernambuco', 'assistente-tecnico-em-depoimento-especial-no-maranhao', 'assistente-tecnico-em-depoimento-especial-no-ceara', 'assistente-tecnico-em-depoimento-especial-em-goias'}  # páginas com conteúdo local e fonte oficial
     NOINDEX_ESTADOS = re.compile(r'^assistente-tecnico-em-depoimento-especial-(em|no|na)-')
     for p in posts:
-        if NOINDEX_ESTADOS.match(p['slug']): continue
+        if NOINDEX_ESTADOS.match(p['slug']) and p['slug'] not in ESTADOS_LIBERADOS: continue
         f.write(f"  <url><loc>{DOM}/blog/{p['slug']}/</loc><lastmod>{p['iso']}</lastmod></url>\n")
     f.write("</urlset>\n")
 
