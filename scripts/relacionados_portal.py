@@ -38,7 +38,7 @@ for d in pub + fila: d["v"] = vec(d)
 def slug(f): return f.split("/")[-2]
 n = 0
 for d in pub + fila:
-    if "rbs-rel-2026" in d["h"] or 'id="leituras-relacionadas"' in d["h"]: continue
+    if "rede-2027" in d["h"] or "rbs-rel-2026" in d["h"] or 'id="leituras-relacionadas"' in d["h"]: continue
     sims = []
     for o in pub:
         if o["f"] == d["f"] or o["titulo"] == d["titulo"]: continue
