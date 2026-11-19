@@ -108,6 +108,8 @@ print("INDEXNOW_URL=" + DOM + "/blog/" + slug + "/")
 # Se a revisao reprovar: garante o commit/push da publicacao e sinaliza a falha
 # (o job termina com erro e o GitHub envia e-mail automatico ao proprietario).
 import subprocess, sys
+# páginas-guia por tema (inclui o artigo novo no tema dele)
+subprocess.run([sys.executable, "scripts/temas.py"], check=False)
 _r = subprocess.run([sys.executable, "scripts/revisao.py"])
 if _r.returncode != 0:
     subprocess.run(["git", "config", "user.name", "robo-publicador"])

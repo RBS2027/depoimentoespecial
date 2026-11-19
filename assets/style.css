@@ -474,3 +474,8 @@ footer.site .rd27-hora{display:inline-block;background:#7A4E27;color:#fff!import
 
 /* zap-nota-2027 */
 footer.site .rd27-card span .rd27-nota{display:block;font-family:'Montserrat',Arial,sans-serif;font-size:.74rem;line-height:1.45;color:#69594D;margin-top:.3rem;padding:0}
+
+/* temas-2027 */
+.rede27-tema{font-family:Montserrat,sans-serif;font-size:.9rem;margin:0 0 1.2rem;color:#69594D}
+.rede27-tema a{font-weight:600;color:#7A4E1D}
+.post-item.tema-item::after{content:"Ver artigos \2192"}
