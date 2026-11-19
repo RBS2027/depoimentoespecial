@@ -467,3 +467,7 @@ footer.site .rd27-hora{display:inline-block;background:#7A4E27;color:#fff!import
 @media(max-width:1000px){footer.site .rd27-topo{grid-template-columns:1fr;gap:1.6rem}footer.site .rd27-marca img{width:280px}footer.site .rd27-cols{grid-template-columns:1fr 1fr}}
 @media(max-width:680px){footer.site .rd27-cards{grid-template-columns:1fr}footer.site .rd27-frase{font-size:1.25rem}}
 @media(max-width:460px){footer.site .rd27-cols{grid-template-columns:1fr}}
+
+/* zap-maior-2027 */
+@media(min-width:481px){.zap-flutuante{padding:1rem 1.65rem 1rem 1.1rem;gap:.8rem}.zap-flutuante .zap-foto{width:64px;height:64px}.zap-flutuante .zap-canal{font-size:1.16rem}.zap-flutuante .zap-status{font-size:.82rem}}
+@media(max-width:480px){.zap-flutuante .zap-foto{width:62px;height:62px}}
