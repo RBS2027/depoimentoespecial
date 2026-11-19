@@ -6,6 +6,9 @@ import re, os, html, glob, json, datetime
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__))); os.chdir(REPO)
 DOM = re.search(r'<link rel="canonical" href="https://([^/]+)/', open('index.html', encoding='utf-8').read()).group(1)
 HOJE = datetime.date.today().isoformat()
+MARCA = {'robisonsouza.com.br': 'Robison Souza', 'peritoempsicologiaforense.com.br': 'Perito Forense', 'depoimentoespecial.com.br': 'Depoimento Especial', 'estudopsicossocial.com.br': 'Estudo Psicossocial'}.get(DOM, 'Robison Souza')
+def tit(x):
+    return x + ' | ' + MARCA if len(x + ' | ' + MARCA) <= 65 else x
 VICIOS = r'laudo|parecer|v[ií]cio|impugna|nulidade|vi[eé]s|jarg[aã]o|terminologia|cita[cç][aã]o incorreta|conclus[aã]o gen[eé]rica|extrapola|instrumento inadequado|data retroativa|compara[cç][aã]o indevida|baseado apenas|desfavor[aá]vel|contestar|contradi[cç]|cust[oó]dia|sintomas'
 if 'depoimento' in DOM:
     ASSUNTO = 'depoimento especial'
@@ -64,6 +67,44 @@ def pagina(modelo, slug, titulo, h1, desc, corpo, trilha):
     t = t[:i] + m.group(0) + '\n' + rot + '\n<h1>' + e(h1) + '</h1>\n' + corpo + '\n' + t[j:]
     t = re.sub(r'<script>(?:(?!</script>).)*busca-blog(?:(?!</script>).)*</script>\s*', '', t, flags=re.S)
     os.makedirs(slug, exist_ok=True); open(f'{slug}/index.html', 'w', encoding='utf-8').write(t)
+if 'depoimento' in DOM:
+    TERMOS = [(r'quesitos', 'quesitos'), (r'falsas memórias', 'memoria-e-relato'), (r'perguntas sugestivas', 'memoria-e-relato'), (r'nulidades?', 'laudos-e-vicios'),
+              (r'revisão criminal', 'processo-penal-e-prova'), (r'disputas? de guarda', 'vara-de-familia'), (r'Protocolo NICHD', 'lei-e-protocolo')]
+else:
+    TERMOS = [(r'quesitos', 'quesitos'), (r'contralaudo', 'laudo-e-impugnacao'), (r'impugnação', 'laudo-e-impugnacao'), (r'guarda compartilhada', 'guarda-e-convivencia'),
+              (r'adoção', 'outras-acoes'), (r'visita domiciliar', 'como-funciona')]
+def links_no_texto(G, termos, abre):
+    """Liga, no corpo de cada artigo, a 1ª menção a outro tema à página-guia dele (máx. 2 por artigo). Idempotente."""
+    n = 0
+    for s, itens in G.items():
+        for a in itens:
+            t = open(a['f'], encoding='utf-8').read(); t0 = t
+            t = re.sub(r'<a class="tema-lk" href="[^"]*">(.*?)</a>', r'\1', t, flags=re.S)
+            i = t.find(abre); j = t.find('<p class="rede27-tema">')
+            if i < 0 or j < i:
+                if t != t0: open(a['f'], 'w', encoding='utf-8').write(t)
+                continue
+            corpo = t[i:j]; feitos = set()
+            def troca_p(m):
+                p = m.group(0)
+                if len(feitos) >= 2 or '<a ' in p or re.search(r'seu processo tem|seu e-mail|100% online|WhatsApp|marque uma consulta|entre em contato|artigo t[eé]cnico por dia', p, re.I): return p
+                partes = re.split(r'(<[^>]+>)', p)
+                for k, seg in enumerate(partes):
+                    if seg.startswith('<') or len(feitos) >= 2: continue
+                    for pat, alvo in termos:
+                        if alvo == s or alvo in feitos or alvo not in G: continue
+                        mm = re.search(r'(?<![\wÀ-ÿ-])(' + pat + r')(?![\wÀ-ÿ-])', seg, re.I)
+                        if mm:
+                            seg = seg[:mm.start()] + f'<a class="tema-lk" href="/temas/{alvo}/">' + mm.group(1) + '</a>' + seg[mm.end():]
+                            feitos.add(alvo); break
+                    partes[k] = seg
+                    if '<a class="tema-lk"' in seg: break
+                return ''.join(partes)
+            corpo = re.sub(r'<p>(?:(?!</p>).)*</p>', troca_p, corpo, flags=re.S)
+            t = t[:i] + corpo + t[j:]
+            if t != t0: open(a['f'], 'w', encoding='utf-8').write(t)
+            n += len(feitos)
+    return n
 def main():
     modelo = open('blog/index.html', encoding='utf-8').read()
     A = artigos(); G = classifica(A); NOME = {s: (n, intro) for s, n, _, intro in TEMAS + [RESTO]}
@@ -74,9 +115,9 @@ def main():
         outros = ' · '.join(f'<a href="/temas/{x}/">{e(NOME[x][0])}</a>' for x in G if x != s)
         corpo = (f'<p>{e(intro)} São {len(itens)} artigos, do mais recente para o mais antigo.</p>\n{cards}\n'
                  f'<h2 id="outros-temas">Outros temas</h2>\n<p>{outros} · <a href="/temas/">todos os temas</a> · <a href="/blog/">blog completo</a></p>')
-        pagina(modelo, f'temas/{s}', f'{n}: todos os artigos'[:60], f'{n}: todos os artigos', (f'{len(itens)} artigos reunidos em uma só página. {intro}'[:152].rsplit(' ', 1)[0]).rstrip('.,:;') + '.', corpo, [('Início', '/'), ('Temas', '/temas/'), (n, f'/temas/{s}/')])
+        pagina(modelo, f'temas/{s}', tit(f'{n}: {len(itens)} artigos'), f'{n}: todos os artigos', (f'{len(itens)} artigos reunidos em uma só página. {intro}'[:152].rsplit(' ', 1)[0]).rstrip('.,:;') + '.', corpo, [('Início', '/'), ('Temas', '/temas/'), (n, f'/temas/{s}/')])
     lista = '\n'.join(f'<div class="post-item tema-item"><h3><a href="/temas/{s}/">{e(NOME[s][0])}</a></h3><p>{len(v)} artigos. {e(NOME[s][1])}</p></div>' for s, v in G.items())
-    pagina(modelo, 'temas', f'Artigos sobre {ASSUNTO}, organizados por tema', 'Todos os artigos, organizados por tema', f'Os {len(A)} artigos deste site sobre {ASSUNTO}, reunidos em {len(G)} temas para facilitar a leitura.',
+    pagina(modelo, 'temas', tit('Artigos organizados por tema'), 'Todos os artigos, organizados por tema', f'Os {len(A)} artigos deste site sobre {ASSUNTO}, reunidos em {len(G)} temas para facilitar a leitura.',
            f'<p>Este site reúne {len(A)} artigos técnicos sobre {ASSUNTO}. Para facilitar a leitura, eles estão agrupados em {len(G)} temas. Escolha o que tem relação com o seu processo.</p>\n{lista}\n<p><a href="/blog/">Ver o blog completo, por data</a></p>', [('Início', '/'), ('Temas', '/temas/')])
     n_art = 0
     for s, itens in G.items():
@@ -88,10 +129,11 @@ def main():
             if k < 0: continue
             t = t[:k] + marca + t[k:]
             if t != t0: open(a['f'], 'w', encoding='utf-8').write(t); n_art += 1
+    n_lk = links_no_texto(G, TERMOS, '<article class="prose">')
     sm = open('sitemap.xml', encoding='utf-8').read()
     for u in ['temas'] + [f'temas/{s}' for s in G]:
         loc = f'https://{DOM}/{u}/'
         if loc not in sm: sm = sm.replace('</urlset>', f'<url><loc>{loc}</loc><lastmod>{HOJE}</lastmod></url>\n</urlset>')
     open('sitemap.xml', 'w', encoding='utf-8').write(sm)
-    print('temas:', {s: len(v) for s, v in G.items()}, '| artigos com link de tema atualizado:', n_art)
+    print('temas:', {s: len(v) for s, v in G.items()}, '| artigos com link de tema atualizado:', n_art, '| links no texto:', n_lk)
 if __name__ == '__main__': main()
