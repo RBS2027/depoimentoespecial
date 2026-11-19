@@ -479,3 +479,7 @@ footer.site .rd27-card span .rd27-nota{display:block;font-family:'Montserrat',Ar
 .rede27-tema{font-family:Montserrat,sans-serif;font-size:.9rem;margin:0 0 1.2rem;color:#69594D}
 .rede27-tema a{font-weight:600;color:#7A4E1D}
 .post-item.tema-item::after{content:"Ver artigos \2192"}
+/* legivel-celular-2027: nenhum texto abaixo de 12px no celular */
+@media(max-width:700px){.post-item .data,nav.main a,.rd27-sites a i,.rede27-r,.rd27-cols h3,.ft-news .btn,.rd27-card b,.rd27-nota,.rd27-perfis b,.eyebrow,.avaliacao .fonte,.stats .rot,.badges .badge,nav.indice strong,.breadcrumb,.breadcrumb a{font-size:12px!important}}
+/* legivel-celular-2027b: selos em uma linha */
+@media(max-width:700px){.badges .badge{letter-spacing:.02em!important;padding-left:.75rem!important;padding-right:.75rem!important;white-space:nowrap}}
