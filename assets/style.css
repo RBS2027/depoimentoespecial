@@ -471,3 +471,6 @@ footer.site .rd27-hora{display:inline-block;background:#7A4E27;color:#fff!import
 /* zap-maior-2027 */
 @media(min-width:481px){.zap-flutuante{padding:1rem 1.65rem 1rem 1.1rem;gap:.8rem}.zap-flutuante .zap-foto{width:64px;height:64px}.zap-flutuante .zap-canal{font-size:1.16rem}.zap-flutuante .zap-status{font-size:.82rem}}
 @media(max-width:480px){.zap-flutuante .zap-foto{width:62px;height:62px}}
+
+/* zap-nota-2027 */
+footer.site .rd27-card span .rd27-nota{display:block;font-family:'Montserrat',Arial,sans-serif;font-size:.74rem;line-height:1.45;color:#69594D;margin-top:.3rem;padding:0}
