@@ -483,3 +483,5 @@ footer.site .rd27-card span .rd27-nota{display:block;font-family:'Montserrat',Ar
 @media(max-width:700px){.post-item .data,nav.main a,.rd27-sites a i,.rede27-r,.rd27-cols h3,.ft-news .btn,.rd27-card b,.rd27-nota,.rd27-perfis b,.eyebrow,.avaliacao .fonte,.stats .rot,.badges .badge,nav.indice strong,.breadcrumb,.breadcrumb a{font-size:12px!important}}
 /* legivel-celular-2027b: selos em uma linha */
 @media(max-width:700px){.badges .badge{letter-spacing:.02em!important;padding-left:.75rem!important;padding-right:.75rem!important;white-space:nowrap}}
+
+figure.diagrama{margin:1.6rem 0 2rem;padding:0}figure.diagrama svg{display:block;border:1px solid rgba(0,0,0,.14);border-radius:18px;background:#fff;max-width:100%;height:auto}figure.diagrama figcaption{font-size:.88rem;opacity:.8;margin-top:.5rem;text-align:center}
