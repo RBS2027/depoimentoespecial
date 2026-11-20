@@ -34,7 +34,7 @@ def capa(title, label, size, out, fmt, q):
     d.text((60, Hh-14-int(Hh*0.11)), f"{DOM}  ·  Perito em Psicologia Forense", font=font("montserrat", int(Hh*0.04)), fill="#69594D")
     im.save(out, fmt, quality=q)
 
-HERO = '<a href="https://wa.me/5512997402674?text=Ol%C3%A1!%20Vim%20pelo%20site%20{dom}%20e%20quero%20falar%20sobre%20o%20meu%20caso." target="_blank" rel="noopener" aria-label="Falar no WhatsApp com Robison Souza" title="Fale comigo no WhatsApp"><img class="art-hero" fetchpriority="high" src="/assets/img/blog/{slug}.webp" alt="{alt}" width="1200" height="460" loading="eager"></a>'
+HERO = '<a href="https://wa.me/5512997402674?text=Ol%C3%A1!%20Vim%20pelo%20site%20{dom}%20e%20quero%20falar%20sobre%20o%20meu%20caso." target="_blank" rel="noopener" aria-label="Falar no WhatsApp com Robison Souza" title="Fale comigo no WhatsApp"><img class="art-hero" fetchpriority="high" src="/assets/img/blog/{slug}.webp?v=8" alt="{alt}" width="1200" height="460" loading="eager"></a>'
 
 for p in sorted(glob.glob("blog/*/index.html") + glob.glob("_fila/*/index.html")):
     s = open(p, encoding="utf-8").read(); o = s
@@ -47,19 +47,19 @@ for p in sorted(glob.glob("blog/*/index.html") + glob.glob("_fila/*/index.html")
         slug = mm.group(1) if mm else re.sub(r"^\d+-", "", p.split("/")[1])
     lab = re.search(r'<span class="eyebrow">(.*?)</span>', s)
     label = html.unescape(re.sub(r"<[^>]+>", "", lab.group(1))).replace("Blog ·", "").strip() if lab else "Artigo técnico"
-    dedicated = f'src="/assets/img/blog/{slug}.webp"' in s
+    dedicated = f'src="/assets/img/blog/{slug}.webp?v=8"' in s
     hero_path = f"assets/img/blog/{slug}.webp"; og_path = f"assets/img/og/{slug}.jpg"
     if True:
         capa(h1, label, (1200, 450), hero_path, "WEBP", 82)
         capa(h1, label, (1200, 630), og_path, "JPEG", 72); st["capas"] += 1
     alt = html.escape(h1, quote=True)
     if 'class="art-hero"' in s:
-        s = re.sub(r'(<img class="art-hero"[^>]*src=")[^"]*(")', rf'\g<1>/assets/img/blog/{slug}.webp\2', s, count=1)
+        s = re.sub(r'(<img class="art-hero"[^>]*src=")[^"]*(")', rf'\g<1>/assets/img/blog/{slug}.webp?v=8\2', s, count=1)
     else:
         s = re.sub(r'(<p class="byline">.*?</p>)', lambda mm: mm.group(1) + "\n" + HERO.format(dom=DOM, slug=slug, alt=alt), s, count=1, flags=re.S); st["hero-inserido"] += 1
-    s = re.sub(r'<link rel="preload" as="image" href="[^"]*"', f'<link rel="preload" as="image" href="/assets/img/blog/{slug}.webp"', s, count=1)
+    s = re.sub(r'<link rel="preload" as="image" href="[^"]*"', f'<link rel="preload" as="image" href="/assets/img/blog/{slug}.webp?v=8"', s, count=1)
     if 'rel="preload" as="image"' not in s:
-        s = s.replace("</head>", f'<link rel="preload" as="image" href="/assets/img/blog/{slug}.webp" fetchpriority="high">\n</head>', 1)
+        s = s.replace("</head>", f'<link rel="preload" as="image" href="/assets/img/blog/{slug}.webp?v=8" fetchpriority="high">\n</head>', 1)
     s = re.sub(r'<meta property="og:image" content="[^"]*"', f'<meta property="og:image" content="https://{DOM}/assets/img/og/{slug}.jpg"', s, count=1)
     s = re.sub(r'"image": \["https://[^"]*"\]', f'"image": ["https://{DOM}/assets/img/og/{slug}.jpg"]', s, count=1)
     if s != o: open(p, "w", encoding="utf-8").write(s); st["html"] += 1
