@@ -14,7 +14,7 @@ def font(n, s):
         except Exception: pass
         _f[k] = f
     return _f[k]
-LOGO = Image.open("assets/img/logo-h-dark.webp?v=9").convert("RGBA")
+LOGO = Image.open("assets/img/logo-h-dark.webp").convert("RGBA")
 def capa(title, label, size, out, fmt, q):
     W, Hh = size
     im = Image.new("RGB", size, "#F3EEE7"); d = ImageDraw.Draw(im)
