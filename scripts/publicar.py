@@ -1,4 +1,7 @@
 import re
+# liga entre si os artigos da série já publicados (nunca cria link quebrado)
+import subprocess as _sp, sys as _sy
+_sp.run([_sy.executable, 'scripts/serie_jw.py'], check=False)
 # -*- coding: utf-8 -*-
 """Publica o próximo artigo da _fila no /blog, atualiza a lista e o sitemap."""
 import os, json, shutil, glob
