@@ -113,12 +113,12 @@ def main():
         n, intro = NOME[s]
         cards = '\n'.join(f'<div class="post-item"><h3><a href="{a["url"]}">{e(a["h1"])}</a></h3><p>{e(a["desc"])}</p></div>' for a in itens)
         outros = ' · '.join(f'<a href="/temas/{x}/">{e(NOME[x][0])}</a>' for x in G if x != s)
-        corpo = (f'<p>{e(intro)} São {len(itens)} artigos, do mais recente para o mais antigo.</p>\n{cards}\n'
+        corpo = (f'<p>{e(intro)} Os artigos estão listados do mais recente para o mais antigo.</p>\n{cards}\n'
                  f'<h2 id="outros-temas">Outros temas</h2>\n<p>{outros} · <a href="/temas/">todos os temas</a> · <a href="/blog/">blog completo</a></p>')
-        pagina(modelo, f'temas/{s}', tit(f'{n}: {len(itens)} artigos'), f'{n}: todos os artigos', (f'{len(itens)} artigos reunidos em uma só página. {intro}'[:152].rsplit(' ', 1)[0]).rstrip('.,:;') + '.', corpo, [('Início', '/'), ('Temas', '/temas/'), (n, f'/temas/{s}/')])
-    lista = '\n'.join(f'<div class="post-item tema-item"><h3><a href="/temas/{s}/">{e(NOME[s][0])}</a></h3><p>{len(v)} artigos. {e(NOME[s][1])}</p></div>' for s, v in G.items())
-    pagina(modelo, 'temas', tit('Artigos organizados por tema'), 'Todos os artigos, organizados por tema', f'Os {len(A)} artigos deste site sobre {ASSUNTO}, reunidos em {len(G)} temas para facilitar a leitura.',
-           f'<p>Este site reúne {len(A)} artigos técnicos sobre {ASSUNTO}. Para facilitar a leitura, eles estão agrupados em {len(G)} temas. Escolha o que tem relação com o seu processo.</p>\n{lista}\n<p><a href="/blog/">Ver o blog completo, por data</a></p>', [('Início', '/'), ('Temas', '/temas/')])
+        pagina(modelo, f'temas/{s}', tit(f'{n}: todos os artigos'), f'{n}: todos os artigos', (f'Artigos reunidos em uma só página. {intro}'[:152].rsplit(' ', 1)[0]).rstrip('.,:;') + '.', corpo, [('Início', '/'), ('Temas', '/temas/'), (n, f'/temas/{s}/')])
+    lista = '\n'.join(f'<div class="post-item tema-item"><h3><a href="/temas/{s}/">{e(NOME[s][0])}</a></h3><p>{e(NOME[s][1])}</p></div>' for s, v in G.items())
+    pagina(modelo, 'temas', tit('Artigos organizados por tema'), 'Todos os artigos, organizados por tema', f'Os artigos deste site sobre {ASSUNTO}, reunidos por tema para facilitar a leitura.',
+           f'<p>Para facilitar a leitura, os artigos técnicos deste site sobre {ASSUNTO} estão agrupados por tema. Escolha o que tem relação com o seu processo.</p>\n{lista}\n<p><a href="/blog/">Ver o blog completo, por data</a></p>', [('Início', '/'), ('Temas', '/temas/')])
     n_art = 0
     for s, itens in G.items():
         marca = f'<p class="rede27-tema">Tema deste artigo: <a href="/temas/{s}/">{e(NOME[s][0])} — ver todos os artigos</a></p>'
